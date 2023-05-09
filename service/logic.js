@@ -17,6 +17,33 @@ const allEmployee=()=>{
     })
 }
 
+const addEmployee=(id,uname,age,designation,salary)=>{
+  return  db.Employee.findOne({id}).then(result=>{
+        if(result){
+            return{
+                statusCode:404,
+                message: "Employee Already Exist!!"
+            }
+        }
+        else{
+            // create object for new employee
+            const newEmp=new db.Employee({
+                id,
+                uname,
+                age,
+                designation,
+                salary
+            })
+            // save the object
+            newEmp.save()
+            return{
+                statusCode:200,
+                message:"employee added successfully!!"
+            }
+        }
+    })
+}
+
 module.exports={
-    allEmployee
+    allEmployee,addEmployee
 }
