@@ -44,6 +44,24 @@ const addEmployee=(id,uname,age,designation,salary)=>{
     })
 }
 
+
+const removeEmployee=(eid)=>{
+return db.Employee.deleteOne({id:eid}).then(result=>{
+    if(result){
+        return{
+            statusCode:200,
+            message:"employee removed!!"
+        }
+    }
+    else{
+        return{
+            statusCode:404,
+            message:"employee not present!!"
+        }
+    }
+})
+}
+
 module.exports={
-    allEmployee,addEmployee
+    allEmployee,addEmployee,removeEmployee
 }

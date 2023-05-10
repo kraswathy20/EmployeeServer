@@ -24,6 +24,12 @@ server.get('/getAllEmployee',(req,res)=>{
     })
 })
 
+server.delete('/deleteEmployee/:id',(req,res)=>{
+    logic.removeEmployee(req.params.id).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})
+
 server.post('/addEmployee',(req,res)=>{
     logic.addEmployee(req.body.id,req.body.uname,req.body.age,req.body.designation,req.body.salary)
     .then(result=>{
